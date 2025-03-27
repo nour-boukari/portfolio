@@ -1,0 +1,54 @@
+body {
+  margin: 0;
+  position: relative;
+  font-family: 'Lekton';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (max-width: 1200px) {
+  body {
+    font-size: 0.9rem;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 0.8rem;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+button, input, textarea {
+  font-family: 'Lekton';
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-draw {
+  animation: draw 2s ease-in-out forwards var(--delay);
+}
