@@ -120,7 +120,7 @@ function Testimonials() {
                 <Source>
                   <ProfileImage
                     src={`${process.env.PUBLIC_URL}${testimonial.imgSrc}`}
-                    alt={`${testimonial.sourceName} logo`}
+                    alt={`${testimonial.sourceName} ${testimonial.isCompany ? 'logo' : 'photo'}`}
                   />
                   <Title>{testimonial.sourceName}</Title>
                   <Text style={{ margin: 0, fontSize: "14px" }}>

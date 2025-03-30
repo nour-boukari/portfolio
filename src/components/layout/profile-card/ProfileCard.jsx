@@ -122,7 +122,7 @@ const ButtonIcon = styled(({ component: Icon, ...props }) => <Icon {...props} />
 const ProfileHeader = () => (
   <>
     <ImageWrapper>
-      <ProfileImage src={profileFrame} alt="profile" />
+      <ProfileImage src={profileFrame} alt="Profile photo" />
     </ImageWrapper>
     <Title>{resume.fullname}</Title>
     <Subtitle>
