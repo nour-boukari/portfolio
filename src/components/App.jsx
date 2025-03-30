@@ -9,8 +9,9 @@ import AnimatedBackground from "./ui/animated-background/AnimatedBackground";
 import { getEncodedSVG } from "../utils/getEncodedSVG";
 import GlobalStyles from "../styles/GlobalStyles";
 import Loader from "./ui/loader/Loader";
+import useScreenSize from "../hooks/useScreenSize";
 
-const Convas = styled.div`
+const Canvas = styled.div`
   background-color: ${({ theme }) => theme.backgroundColor};
   display: flex;
   align-items: center;
@@ -66,66 +67,37 @@ const MainLayout = styled.div`
 function App() {
   const { theme } = useContext(ThemeContext);
   const [isLoading, setIsLoading] = useState(true);
-  const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth > 1200);
+  const isLargeScreen = useScreenSize(1200);
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsLargeScreen(window.innerWidth > 1200);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    const images = document.getElementsByTagName("img");
-    let loadedImages = 0;
-    const totalImages = images.length;
-
-    if (totalImages === 0) {
-      const timer = setTimeout(() => setIsLoading(false), 500);
-      return () => clearTimeout(timer);
-    }
-
-    const handleImageLoad = () => {
-      loadedImages++;
-      if (loadedImages === totalImages) {
-        setIsLoading(false);
-      }
-    };
-
-    Array.from(images).forEach((img) => {
-      if (img.complete) {
-        handleImageLoad();
-      } else {
-        img.addEventListener("load", handleImageLoad);
-        img.addEventListener("error", handleImageLoad);
-      }
+    document.fonts.ready.then(() => {
+      setIsLoading(false);
     });
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      Array.from(images).forEach((img) => {
-        img.removeEventListener("load", handleImageLoad);
-        img.removeEventListener("error", handleImageLoad);
-      });
-    };
   }, []);
+
+  if (isLoading) {
+    return (
+      <ThemeProvider theme={theme}>
+        <GlobalStyles />
+        <Loader />
+      </ThemeProvider>
+    );
+  }
 
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
       <ScrollProvider>
-        {isLoading ? (
-          <Loader />
-        ) : (
-          <Convas>
-            {isLargeScreen && <AnimatedBackground />}
-            <Container>
-              <ProfileCard />
-              <MainLayout>
-                <NavBar />
-                <MainContent />
-              </MainLayout>
-            </Container>
-          </Convas>
-        )}
+        <Canvas>
+          {isLargeScreen && <AnimatedBackground />}
+          <Container>
+            <ProfileCard />
+            <MainLayout>
+              <NavBar />
+              <MainContent />
+            </MainLayout>
+          </Container>
+        </Canvas>
       </ScrollProvider>
     </ThemeProvider>
   );
