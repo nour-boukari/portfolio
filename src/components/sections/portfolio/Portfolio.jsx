@@ -17,7 +17,7 @@ import {
 import { SiDotnet, SiCsharp, SiMicrosoftsqlserver } from "react-icons/si";
 import projects from "../../../assets/data/projects.json";
 import Project from "./Project";
-import comingSoon from "../../../assets/images/coming-soon.png";
+import comingSoon from "../../../assets/images/coming-soon.webp";
 
 const ImageWrapper = styled.div`
   display: flex;

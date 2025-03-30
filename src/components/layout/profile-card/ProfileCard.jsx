@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { IoIosCloudDownload, IoIosSend } from "react-icons/io";
 import { HorizontalSeparator, VerticalSeparator } from "../../ui/elements/UIElements";
 import resume from "../../../assets/data/resume";
-import profileFrame from "../../../assets/images/profile-frame.png";
+import profileFrame from "../../../assets/images/profile-frame.webp";
 import { ReactTyped } from "react-typed";
 import { useScroll } from "../../../contexts/ScrollContext";
 import SocialMediaLinks from "./SocialMediaLinks";
@@ -51,10 +51,13 @@ const CardContent = styled.div`
 
 const ImageWrapper = styled.div`
   padding: 2rem;
+  width: 100%;
 `;
 
 const ProfileImage = styled.img`
   width: 100%;
+  height: auto;
+  aspect-ratio: 155 / 128;
   object-fit: contain;
   
   @media (min-width: 769px) and (max-width: 1200px) {
